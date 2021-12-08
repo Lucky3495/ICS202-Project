@@ -29,10 +29,26 @@ public class Trie {
 		}
 		
 		return temp.terminal;
+		// if temp is not terminal then there is'nt a word w in the trie
+		// e.g. if w is POT and the only word in the trie is POTS then
+		// the node that has 'T' will not be terminal since POT is not in the trie
 	}
 	
 	public boolean isPrefix(String pre) {
-		return true;
+		// convert the string to uppercase char array
+		char[] chars = pre.toUpperCase().toCharArray();
+		
+		TrieNode temp = root;
+		// iterate over the characters of the word w
+		for(char c : chars) {
+			if(!temp.contains(c))
+				return false;
+			else
+				temp = temp.get(c);
+		}
+		
+		// if temp is not empty then there is a word with prefix pre
+		return !temp.isEmpty();
 	}
 	
 	public void insert(String w) {
@@ -53,10 +69,11 @@ public class Trie {
 	
 	// deletes the word w from the trie
 	public void delete(String w) {
-		
+		// TODO
 	}
 	
 	public String[] allWordsPrefix(String w) {
+		// TODO
 		return null;
 	}
 }

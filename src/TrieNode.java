@@ -14,6 +14,10 @@ public class TrieNode implements Comparable<TrieNode>{
 		this.el = '#'; // the hashtag denotes the root node
 	}
 	
+	public boolean isEmpty() {
+		return children.isEmpty();
+	}
+	
 	public void setTerminal(boolean terminal) {
 		this.terminal = terminal;
 	}
@@ -53,6 +57,7 @@ public class TrieNode implements Comparable<TrieNode>{
 		return children.get(a);
 	}
 	
+	// TODO size is not so simple, it should return the number of nodes
 	public int size() {
 		return children.size();
 	}
@@ -60,4 +65,5 @@ public class TrieNode implements Comparable<TrieNode>{
 	public void add(char a, TrieNode n) {
 		children.put(a, n);
 	}
+	
 }
