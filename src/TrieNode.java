@@ -10,10 +10,6 @@ public class TrieNode implements Comparable<TrieNode>{
 		this.el = el;
 	}
 	
-	public TrieNode() {
-		this.el = '#'; // the hashtag denotes the root node
-	}
-	
 	public boolean isEmpty() {
 		return children.isEmpty();
 	}

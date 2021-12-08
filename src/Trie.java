@@ -1,6 +1,8 @@
 
 public class Trie {
-	TrieNode root = new TrieNode();
+	// char used for the root does not matter
+	// a unique character is used for debuggng purposes
+	TrieNode root = new TrieNode('#');
 	
 	public Trie() {}
 	
@@ -9,7 +11,7 @@ public class Trie {
 	}
 	
 	public void clear() {
-		root = new TrieNode();
+		root = new TrieNode('#');
 	}
 	
 	public int size() {
