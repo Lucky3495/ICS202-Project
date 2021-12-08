@@ -47,6 +47,7 @@ public class Trie {
 				temp = temp.get(c);
 		}
 		
+		// TODO Should I keep it like this or simply return true?
 		// if temp is not empty then there is a word with prefix pre
 		return !temp.isEmpty();
 	}
