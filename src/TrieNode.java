@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class TrieNode implements Comparable<TrieNode>{
+public class TrieNode {
 	protected char el; // character stored in the node
 	protected boolean terminal; // if the node denotes the end of a word
 	// list of children of the node
@@ -10,36 +10,22 @@ public class TrieNode implements Comparable<TrieNode>{
 		this.el = el;
 	}
 	
+	// returns true if this TrieNode has no children
 	public boolean isEmpty() {
 		return children.isEmpty();
 	}
 	
+	// returns true if this TrieNode terminates a word
+	public boolean isTerminal() {
+		return this.terminal;
+	}
+	
+	// sets the boolean value of terminal to the input of the method
 	public void setTerminal(boolean terminal) {
 		this.terminal = terminal;
 	}
 	
-	@Override
-	public int compareTo(TrieNode o) {
-		if(this.el > o.el) {
-			return 1;
-		}
-		if(this.el < o.el) {
-			return -1;
-		}
-		
-		return 0;
-	}
-	
-	@Override
-	public boolean equals(Object o) {
-		if(!(o instanceof TrieNode))
-			return false;
-		else if(this.el == ((TrieNode)o).el) {
-			return true;
-		}
-		return false;
-	}
-	
+	// returns true if this TrieNode has a child associated with the char a
 	public boolean contains(char a) {
 		if(children.containsKey(a)) {
 			return true;
@@ -49,24 +35,38 @@ public class TrieNode implements Comparable<TrieNode>{
 		}
 	}
 	
+	// returns the child of this TrieNode that is associated with the char a
+	// returns null if there is no such child
 	public TrieNode get(char a) {
 		return children.get(a);
 	}
 	
-	// TODO size is not so simple, it should return the number of nodes
+	// returns the number of children of this TrieNode
+	public int childrenSize() {
+		return children.size();
+	}
+	
+	// returns the number of nodes that are below this TrieNode
 	public int size() {
 		return size(0);
 	}
 	
-	public int size(int s) {
+	// recursive helper method for the method size()
+	private int size(int s) {
 		for(char key : children.keySet()) {
 			s += children.get(key).size();
 		}
 		return children.size() + s;
 	}
 	
-	public void add(char a, TrieNode n) {
-		children.put(a, n);
+	// add a child to this TrieNode that is associated with the char a
+	public void add(char a) {
+		children.put(a, new TrieNode(a));
+	}
+	
+	// remove the child of this TrieNode that is associated with the char a
+	public void remove(char a) {
+		children.remove(a);
 	}
 	
 }
