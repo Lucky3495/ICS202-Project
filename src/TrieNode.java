@@ -59,7 +59,14 @@ public class TrieNode implements Comparable<TrieNode>{
 	
 	// TODO size is not so simple, it should return the number of nodes
 	public int size() {
-		return children.size();
+		return size(0);
+	}
+	
+	public int size(int s) {
+		for(char key : children.keySet()) {
+			s += children.get(key).size();
+		}
+		return children.size() + s;
 	}
 	
 	public void add(char a, TrieNode n) {
